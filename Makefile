@@ -29,6 +29,8 @@ endif
 all: pod-build/Makefile
 	$(MAKE) -C pod-build all install
 
+	pod-run virtualenv $(BUILD_PREFIX)
+
 pod-build/Makefile:
 	$(MAKE) configure
 
@@ -72,13 +74,11 @@ unarchive:
 build-source:
 	@echo "\n Building $(POD_NAME) \n"
 	@mkdir -p pod-build
-	cd pod-build && ../$(POD_NAME)/configure --prefix=$(BUILD_PREFIX)
-	cd pod-build && make
 	@touch built.touch
 
 install-source:
 	@echo "\n Installing $(POD_NAME) \n"
-	cd pod-build && make install
+	cd virtualenv-1.11.4 && python setup.py install --prefix=$(BUILD_PREFIX) 
 	@touch installed.touch
 
 pkgconfig-source:
@@ -90,7 +90,7 @@ pkgconfig-source:
 clean:
 	-if [ -e pod-build/install_manifest.txt ]; then rm -f `cat pod-build/install_manifest.txt`; fi
 	-if [ -d pod-build ]; then $(MAKE) -C pod-build clean; rm -rf pod-build; fi
-	rm -rf $(POD_NAME)
+	rm -rf $virtualenv-1.11.4
 	rm unarchived.touch built.touch installed.touch pkgconfiged.touch
 
 # other (custom) targets are passed through to the cmake-generated Makefile 
