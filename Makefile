@@ -29,8 +29,6 @@ endif
 all: pod-build/Makefile
 	$(MAKE) -C pod-build all install
 
-	pod-run virtualenv $(BUILD_PREFIX)
-
 pod-build/Makefile:
 	$(MAKE) configure
 
@@ -44,6 +42,9 @@ configure: pkgconfiged.touch
 	# run CMake to generate and configure the build scripts
 	@cd pod-build && cmake -DCMAKE_INSTALL_PREFIX=$(BUILD_PREFIX) \
 		   -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) ..
+
+	# create a new defautl poython virtualenv under BUILD_PREFIX
+	pod-run virtualenv $(BUILD_PREFIX)
 
 
 fetched.touch:
