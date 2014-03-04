@@ -44,8 +44,8 @@ configure: pkgconfiged.touch
 		   -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) ..
 
 	# create a new defautl poython virtualenv under BUILD_PREFIX
-	#@echo "Creating new PYTHON VIRTUALENV under $(BUILD_PREFIX)"
-	#pod-run virtualenv $(BUILD_PREFIX)
+	@echo "Creating new PYTHON VIRTUALENV under $(BUILD_PREFIX)"
+	pod-run virtualenv $(BUILD_PREFIX)
 
 
 fetched.touch:
