@@ -79,7 +79,7 @@ build-source:
 
 install-source:
 	@echo "\n Installing $(POD_NAME) \n"
-	cd virtualenv-1.11.4 && python setup.py install --prefix=$(BUILD_PREFIX) 
+	PYTHONPATH=$(BUILD_PREFIX)/lib/python2.7/site-packages/:$(PYTHONPATH) cd virtualenv-1.11.4 && python setup.py install --prefix=$(BUILD_PREFIX) 
 	@touch installed.touch
 
 pkgconfig-source:
