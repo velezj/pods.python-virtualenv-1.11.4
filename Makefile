@@ -44,7 +44,8 @@ configure: pkgconfiged.touch
 		   -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) ..
 
 	# create a new defautl poython virtualenv under BUILD_PREFIX
-	pod-run virtualenv $(BUILD_PREFIX)
+	#@echo "Creating new PYTHON VIRTUALENV under $(BUILD_PREFIX)"
+	#pod-run virtualenv $(BUILD_PREFIX)
 
 
 fetched.touch:
@@ -79,7 +80,7 @@ build-source:
 
 install-source:
 	@echo "\n Installing $(POD_NAME) \n"
-	PYTHONPATH=$(BUILD_PREFIX)/lib/python2.7/site-packages/:$(PYTHONPATH) cd virtualenv-1.11.4 && python setup.py install --prefix=$(BUILD_PREFIX) 
+	cd virtualenv-1.11.4 && PYTHONPATH=$(BUILD_PREFIX)/lib/python2.7/site-packages/:$(PYTHONPATH) python setup.py install --prefix=$(BUILD_PREFIX) 
 	@touch installed.touch
 
 pkgconfig-source:
