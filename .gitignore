@@ -1,0 +1,6 @@
+pod-build/
+*~
+*.touch
+*.tar.*
+virtualenv-1.11.4/
+
